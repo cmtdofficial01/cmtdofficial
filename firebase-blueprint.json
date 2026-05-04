@@ -1,0 +1,186 @@
+{
+  "entities": {
+    "SchoolRegistration": {
+      "title": "School Registration",
+      "description": "Information for schools applying for registration",
+      "type": "object",
+      "properties": {
+        "schoolName": { "type": "string" },
+        "location": { "type": "string" },
+        "principalName": { "type": "string" },
+        "anoCtoName": { "type": "string" },
+        "contactNumber": { "type": "string" },
+        "anoNumber": { "type": "string" },
+        "totalStudents": { "type": "number" },
+        "wingSelection": { "type": "string", "enum": ["Army", "Navy", "Air"] },
+        "station": { "type": "string" },
+        "policeStation": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "pinCode": { "type": "string" },
+        "address": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["schoolName", "email", "contactNumber"]
+    },
+    "TrainerRequest": {
+      "title": "Trainer Request",
+      "description": "Requests for professional trainers",
+      "type": "object",
+      "properties": {
+        "schoolName": { "type": "string" },
+        "totalStudents": { "type": "number" },
+        "anoCtoName": { "type": "string" },
+        "principalName": { "type": "string" },
+        "contactNumber": { "type": "string" },
+        "location": { "type": "string" },
+        "pinCode": { "type": "string" },
+        "policeStation": { "type": "string" },
+        "nearestStation": { "type": "string" },
+        "wingType": { "type": "string", "enum": ["Army", "Navy", "Air"] },
+        "email": { "type": "string", "format": "email" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["schoolName", "email"]
+    },
+    "StaffApplication": {
+      "title": "Staff Application",
+      "description": "Job applications for CMTD staff",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "mobile": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "schoolName": { "type": "string" },
+        "collegeName": { "type": "string" },
+        "parentName": { "type": "string" },
+        "dob": { "type": "string", "format": "date" },
+        "post": { "type": "string" },
+        "qualification": { "type": "string" },
+        "nccCert": { "type": "string" },
+        "address": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "mobile"]
+    },
+    "DefenceTraining": {
+      "title": "Defence Training",
+      "description": "Registration for defence career preparation",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "nccStatus": { "type": "string" },
+        "certType": { "type": "string" },
+        "institution": { "type": "string" },
+        "education": { "type": "string" },
+        "dob": { "type": "string", "format": "date" },
+        "mobile": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "force": { "type": "string" },
+        "policeStation": { "type": "string" },
+        "pinCode": { "type": "string" },
+        "address": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "mobile"]
+    },
+    "Staff": {
+      "title": "CMTD Staff",
+      "description": "Staff account information",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "password": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string" },
+        "loginCount": { "type": "number" },
+        "lastLogin": { "type": "string", "format": "date-time" }
+      }
+    },
+    "School": {
+      "title": "School Record",
+      "description": "Managed school data",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "wing": { "type": "string" },
+        "cadets": { "type": "number" },
+        "status": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Notice": {
+      "title": "System Notice",
+      "description": "Management notices for staff",
+      "type": "object",
+      "properties": {
+        "text": { "type": "string" },
+        "priority": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Configuration": {
+      "title": "Website Configuration",
+      "description": "Dynamic settings for the website",
+      "type": "object",
+      "properties": {
+        "phoneNumber": { "type": "string" },
+        "email": { "type": "string" },
+        "address": { "type": "string" },
+        "facebookUrl": { "type": "string" },
+        "instagramUrl": { "type": "string" },
+        "twitterUrl": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "ExcelSheet": {
+      "title": "Excel Sheet Metadata",
+      "description": "Metadata for an excel sheet",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "ExcelData": {
+      "title": "Excel Cell Data",
+      "description": "Stored data for excel cells",
+      "type": "object",
+      "properties": {
+        "data": { "type": "object" }
+      }
+    },
+    "ExcelConfig": {
+      "title": "Excel Setup",
+      "description": "Configuration for excel sheets",
+      "type": "object",
+      "properties": {
+        "sheets": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "ScheduleTask": {
+      "title": "Schedule Task",
+      "description": "A single task in a staff schedule",
+      "type": "object",
+      "properties": {
+        "time": { "type": "string" },
+        "task": { "type": "string" },
+        "location": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/schoolRegistrations/{id}": { "schema": "SchoolRegistration", "description": "Public school registrations" },
+    "/trainerRequests/{id}": { "schema": "TrainerRequest", "description": "Public trainer requests" },
+    "/staffApplications/{id}": { "schema": "StaffApplication", "description": "Public staff applications" },
+    "/defenceTrainingRegistrations/{id}": { "schema": "DefenceTraining", "description": "Public defence training regs" },
+    "/staff/{userId}": { "schema": "Staff", "description": "Staff profile data" },
+    "/staff_managed_schools/{schoolId}": { "schema": "School", "description": "Shared managed school collection with staffId field" },
+    "/staff_schedules/{taskId}": { "schema": "ScheduleTask", "description": "Shared training schedule with staffId field" },
+    "/notices/{noticeId}": { "schema": "Notice", "description": "System notices" },
+    "/settings/{configId}": { "schema": "Configuration", "description": "Global website settings" },
+    "/excel_sheets/{sheetId}": { "schema": "ExcelSheet", "description": "Excel sheet metadata" },
+    "/excel_data/{sheetId}": { "schema": "ExcelData", "description": "Excel cell content" }
+  }
+}

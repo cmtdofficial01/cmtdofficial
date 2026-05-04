@@ -1,0 +1,10 @@
+{
+  "name": "cmtdofficial",
+  "description": "Secure Cadet Management & Training Department administrative node. Professional training control system with staff management and real-time data tracking.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "majorCapabilities": []
+}

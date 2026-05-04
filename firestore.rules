@@ -1,0 +1,78 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // --- Helpers ---
+    function isAdmin() { return true; } // Custom system without Firebase Auth
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+
+    // Admin-only Collections
+    match /settings/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /schoolRegistrations/{id} {
+      allow create: if true;
+      allow read, write: if isAdmin();
+    }
+
+    match /trainerRequests/{id} {
+      allow create: if true;
+      allow read, write: if isAdmin();
+    }
+
+    match /staffApplications/{id} {
+      allow create: if true;
+      allow read, write: if isAdmin();
+    }
+
+    match /defenceTrainingRegistrations/{id} {
+      allow create: if true;
+      allow read, write: if isAdmin();
+    }
+
+    match /staff/{staffId} {
+      allow get: if true; 
+      allow list, create, delete, update: if isAdmin();
+    }
+    
+    match /notices/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    
+    match /schools/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /excel_sheets/{id} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /excel_data/{id} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Dynamic Staff Collections (Shared with StaffId field)
+    match /staff_managed_schools/{id} {
+      allow read, create, update, delete: if true; 
+    }
+    match /staff_schedules/{id} {
+      allow read, create, update, delete: if true;
+    }
+
+    // Legacy support for dynamic collections (deprecated but kept for transition)
+    match /{collectionId}/{document=**} {
+      allow read, create, update, delete: if collectionId.startsWith('schedule_') || collectionId.startsWith('managed_schools_');
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
